@@ -1,0 +1,7 @@
+USE Minions
+
+ALTER TABLE Users
+DROP CONSTRAINT Pk_User;
+
+ALTER TABLE Users
+ADD CONSTRAINT Pk_Id_UserName PRIMARY KEY (Id, Username);
