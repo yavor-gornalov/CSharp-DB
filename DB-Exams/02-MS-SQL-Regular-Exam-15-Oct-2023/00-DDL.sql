@@ -1,0 +1,77 @@
+CREATE DATABASE TouristAgency
+GO
+
+USE TouristAgency
+GO
+
+CREATE TABLE Countries(
+	Id INT IDENTITY PRIMARY KEY
+	,Name NVARCHAR(50) NOT NULL
+)
+
+CREATE TABLE Destinations(
+	Id INT IDENTITY PRIMARY KEY
+	,Name NVARCHAR(50) NOT NULL
+	,CountryId INT NOT NULL
+	,CONSTRAINT fk_Destinations_Countries
+	FOREIGN KEY (CountryId) REFERENCES Countries(Id)
+)
+
+CREATE TABLE Rooms(
+	Id INT IDENTITY PRIMARY KEY
+	,Type NVARCHAR(40) NOT NULL
+	,Price DECIMAL(18, 2) NOT NULL
+	,BedCount INT NOT NULL
+	,CONSTRAINT ch_BedCount
+	CHECK (BedCount BETWEEN 1 AND 10)
+)
+
+CREATE TABLE Hotels(
+	Id INT IDENTITY PRIMARY KEY
+	,Name NVARCHAR(50) NOT NULL
+	,DestinationId INT NOT NULL
+	,CONSTRAINT fk_Hotels_Destinations
+	FOREIGN KEY (DestinationId) REFERENCES Destinations(Id)
+)
+
+CREATE TABLE Tourists(
+	Id INT IDENTITY PRIMARY KEY
+	,Name NVARCHAR(80) NOT NULL
+	,PhoneNumber NVARCHAR(20) NOT NULL
+	,Email NVARCHAR(80) NULL
+	,CountryId INT NOT NULL
+	,CONSTRAINT fk_Tourists_Countries
+	FOREIGN KEY (CountryId) REFERENCES Countries(Id)
+)
+
+CREATE TABLE Bookings(
+	Id INT IDENTITY PRIMARY KEY
+	,ArrivalDate DATETIME2 NOT NULL
+	,DepartureDate DATETIME2 NOT NULL
+	,AdultsCount INT NOT NULL
+	,ChildrenCount INT NOT NULL
+	,TouristId INT NOT NULL
+	,HotelId INT NOT NULL
+	,RoomId INT NOT NULL
+	,CONSTRAINT ch_AdultsCount
+	CHECK (AdultsCount BETWEEN 1 AND 10)
+	,CONSTRAINT ch_ChildrenCount
+	CHECK (AdultsCount BETWEEN 0 AND 9)
+	,CONSTRAINT fk_Bookings_Tourists
+	FOREIGN KEY (TouristId) REFERENCES Tourists(Id)
+	,CONSTRAINT fk_Bookings_Hotels
+	FOREIGN KEY (HotelId) REFERENCES Hotels(Id)
+	,CONSTRAINT fk_Bookings_Rooms
+	FOREIGN KEY (RoomId) REFERENCES Rooms(Id)
+)
+
+CREATE TABLE HotelsRooms(
+	HotelId INT NOT NULL
+	,RoomId INT NOT NULL
+	,CONSTRAINT pk_HotelsRooms
+	PRIMARY KEY (HotelId, RoomId)
+	,CONSTRAINT fk_HotelsRooms_Hotels
+	FOREIGN KEY (HotelId) REFERENCES Hotels(Id)
+	,CONSTRAINT fk_HotelsRooms_Rooms
+	FOREIGN KEY (RoomId) REFERENCES Rooms(Id)
+)
