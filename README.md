@@ -3,7 +3,6 @@
 
 &nbsp;&nbsp;&nbsp;&nbsp;The course emphasizes the relational model, data modeling with ER diagrams (tables and relational connections), and working with the SQL language (data retrieval, selection, projection, joins, aggregation, grouping, modification, deletion, and insertion). Fundamental knowledge of ACID transactions and transactional processing is provided, along with practical advice for performance tuning. The course lays the foundation for working with databases, making it easier to use them in real applications and understanding concepts such as object-relational mapping (ORM).
 
-&nbsp;&nbsp;&nbsp;&nbsp;Exercises are prepared for testing in the Judge system. Problem explanations can be accessed after registration at [this link](https://judge.softuni.org/Contests/#!/List/ByCategory/63/CSharp-Databases-Basics).
 ## Contents:
 ### C# Databases - Exercises
 *Exercises could be tested at Judge System [**here!**](https://judge.softuni.org/Contests/#!/List/ByCategory/62/CSharp-Databases-Basics-Exercises)*
@@ -18,7 +17,7 @@
    - [`Additional Exercises`](https://github.com/yavor-gornalov/CSharp-DB/tree/main/DB-Exercises/09-Additional-Exercises)
 
 ### C# Databases - Exam Problems
-   - ***Exams problems descriptions could be accessed [**`here!**](https://judge.softuni.org/Contests/#!/List/ByCategory/62/CSharp-Databases-Basics-Exercises)***
+   - ***Exams problems descriptions could be accessed [**here!**](https://judge.softuni.org/Contests/#!/List/ByCategory/62/CSharp-Databases-Basics-Exercises)***
    - ***Tested solutions could be accessed at [**this link!**](https://github.com/yavor-gornalov/CSharp-DB/tree/main/DB-Exams)***
 
 ### Useful links: 
