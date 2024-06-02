@@ -17,7 +17,7 @@
    - [`Additional Exercises`](https://github.com/yavor-gornalov/CSharp-DB/tree/main/DB-Exercises/09-Additional-Exercises)
 
 ### C# Databases - Exam Problems
-   - ***Exams problems descriptions could be accessed [**here!**](https://judge.softuni.org/Contests/#!/List/ByCategory/62/CSharp-Databases-Basics-Exercises)***
+   - ***Exams problems descriptions could be accessed [**here!**](https://judge.softuni.org/Contests/#!/List/ByCategory/8/CSharp-Databases-Basics-Exams)***
    - ***Tested solutions could be accessed at [**this link!**](https://github.com/yavor-gornalov/CSharp-DB/tree/main/DB-Exams)***
 
 ### Useful links: 
