@@ -1,0 +1,75 @@
+CREATE DATABASE CigarShop
+GO
+
+USE CigarShop
+GO
+
+CREATE TABLE Sizes (
+	Id INT IDENTITY PRIMARY KEY
+	, Length INT NOT NULL
+	, RingRange DECIMAL (5,2) NOT NULL 
+	, CONSTRAINT ck_Length
+	CHECK (Length BETWEEN 10 AND 25)
+	, CONSTRAINT ch_RingRange
+	CHECK (RingRange BETWEEN 1.5 AND 7.5)
+)
+
+CREATE TABLE Tastes (
+	Id INT IDENTITY PRIMARY KEY
+	, TasteType VARCHAR(20) NOT NULL
+	, TasteStrength VARCHAR(15) NOT NULL
+	, ImageURL NVARCHAR(100) NOT NULL
+)
+
+CREATE TABLE Brands (
+	Id INT IDENTITY PRIMARY KEY
+	, BrandName VARCHAR(30) UNIQUE NOT NULL
+	, BrandDescription VARCHAR(MAX)
+)
+
+CREATE TABLE Cigars (
+	Id INT IDENTITY PRIMARY KEY
+	, CigarName VARCHAR(80) NOT NULL
+	, BrandId INT NOT NULL
+	, TastId INT NOT NULL
+	, SizeId INT NOT NULL
+	, PriceForSingleCigar MONEY NOT NULL
+	, ImageURL NVARCHAR(100) NOT NULL
+	--, CONSTRAINT pk_Cigars
+	--PRIMARY KEY (Id, SizeId)
+	, CONSTRAINT fk_Cigars_Brands
+	FOREIGN KEY (BrandId) REFERENCES Brands(Id)
+	, CONSTRAINT fk_Cigars_Tastes
+	FOREIGN KEY (TastId) REFERENCES Tastes(Id)
+	, CONSTRAINT fk_Cigars_Sizes
+	FOREIGN KEY (SizeId) REFERENCES Sizes(Id)
+)
+
+CREATE TABLE Addresses (
+	Id INT IDENTITY PRIMARY KEY
+	, Town VARCHAR(30) NOT NULL
+	, Country NVARCHAR(30) NOT NULL
+	, Streat NVARCHAR(100) NOT NULL
+	, ZIP VARCHAR(20) NOT NULL
+)
+
+CREATE TABLE Clients (
+	Id INT IDENTITY PRIMARY KEY
+	, FirstName NVARCHAR(30) NOT NULL
+	, LastName NVARCHAR(30) NOT NULL
+	, Email NVARCHAR(50) NOT NULL
+	, AddressId INT NOT NULL
+	, CONSTRAINT fk_Clients_Addresses
+	FOREIGN KEY (AddressId) REFERENCES Addresses(Id)
+)
+
+CREATE TABLE ClientsCigars (
+	ClientId INT NOT NULL
+	, CigarId INT NOT NULL
+	, CONSTRAINT pk_ClientsCigars
+	PRIMARY KEY (ClientId, CigarId)
+	, CONSTRAINT fk_ClientsCigars_Clients
+	FOREIGN KEY (ClientId) REFERENCES Clients(Id)
+	, CONSTRAINT fk_ClientsCigars_Cigars
+	FOREIGN KEY (CigarId) REFERENCES Cigars(Id)
+)
