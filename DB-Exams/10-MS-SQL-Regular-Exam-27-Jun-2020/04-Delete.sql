@@ -1,0 +1,14 @@
+USE WMS
+GO
+
+BEGIN TRANSACTION
+
+DECLARE @OrderToDelete INT = 19
+
+DELETE FROM OrderParts
+WHERE OrderId = @OrderToDelete
+
+DELETE FROM Orders
+WHERE OrderId = @OrderToDelete
+
+ROLLBACK TRANSACTION
