@@ -1,0 +1,10 @@
+USE TripService
+GO
+
+BEGIN TRANSACTION 
+
+DELETE
+FROM AccountsTrips 
+WHERE AccountId = 47
+
+ROLLBACK TRANSACTION
